@@ -1,109 +1,200 @@
-<a href="https://demo-nextjs-with-supabase.vercel.app/">
-  <img alt="Next.js and Supabase Starter Kit - the fastest way to build apps with Next.js and Supabase" src="https://demo-nextjs-with-supabase.vercel.app/opengraph-image.png">
-  <h1 align="center">Next.js and Supabase Starter Kit</h1>
-</a>
+# VibeGuide - AI 驱动的智能开发文档平台
 
-<p align="center">
- The fastest way to build apps with Next.js and Supabase
-</p>
+VibeGuide 是一个智能 AI 开发文档平台，能够非常方便地帮助编程新手生成项目的一系列开发文档。
 
-<p align="center">
-  <a href="#features"><strong>Features</strong></a> ·
-  <a href="#demo"><strong>Demo</strong></a> ·
-  <a href="#deploy-to-vercel"><strong>Deploy to Vercel</strong></a> ·
-  <a href="#clone-and-run-locally"><strong>Clone and run locally</strong></a> ·
-  <a href="#feedback-and-issues"><strong>Feedback and issues</strong></a>
-  <a href="#more-supabase-examples"><strong>More Examples</strong></a>
-</p>
-<br/>
+## 功能特性
 
-## Features
+- 🤖 **AI 智能生成** - 基于 Claude 4 模型，智能分析需求，生成专业的开发文档
+- 📄 **全面的文档类型** - 支持用户旅程地图、PRD、前后端设计、数据库设计等多种文档
+- ⚡ **快速高效** - 几分钟内完成需要数小时甚至数天的文档编写工作
+- ☁️ **云端保存** - 随时随地访问和下载你的项目文档
+- 🔒 **安全可靠** - 企业级数据安全保障，你的项目信息完全私密
+- 📦 **灵活导出** - 支持 Markdown 和 HTML 预览，可单个或批量下载为 ZIP
 
-- Works across the entire [Next.js](https://nextjs.org) stack
-  - App Router
-  - Pages Router
-  - Middleware
-  - Client
-  - Server
-  - It just works!
-- supabase-ssr. A package to configure Supabase Auth to use cookies
-- Password-based authentication block installed via the [Supabase UI Library](https://supabase.com/ui/docs/nextjs/password-based-auth)
-- Styling with [Tailwind CSS](https://tailwindcss.com)
-- Components with [shadcn/ui](https://ui.shadcn.com/)
-- Optional deployment with [Supabase Vercel Integration and Vercel deploy](#deploy-your-own)
-  - Environment variables automatically assigned to Vercel project
+## 技术栈
 
-## Demo
+- **前端框架**: Next.js 15 (App Router)
+- **UI 组件**: Tailwind CSS + shadcn/ui
+- **数据库**: Supabase (PostgreSQL)
+- **ORM**: Drizzle ORM
+- **认证**: Supabase Auth
+- **AI**: Claude 4 (via OpenRouter)
+- **支付**: ZPay (易支付)
 
-You can view a fully working demo at [demo-nextjs-with-supabase.vercel.app](https://demo-nextjs-with-supabase.vercel.app/).
+## 环境变量配置
 
-## Deploy to Vercel
+复制 `.env.example` 为 `.env.local` 并填写以下环境变量：
 
-Vercel deployment will guide you through creating a Supabase account and project.
+\`\`\`bash
+# Supabase Database
+DATABASE_URL=your_supabase_database_url
 
-After installation of the Supabase integration, all relevant environment variables will be assigned to the project so the deployment is fully functioning.
+# Supabase Auth
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fwith-supabase&project-name=nextjs-with-supabase&repository-name=nextjs-with-supabase&demo-title=nextjs-with-supabase&demo-description=This+starter+configures+Supabase+Auth+to+use+cookies%2C+making+the+user%27s+session+available+throughout+the+entire+Next.js+app+-+Client+Components%2C+Server+Components%2C+Route+Handlers%2C+Server+Actions+and+Middleware.&demo-url=https%3A%2F%2Fdemo-nextjs-with-supabase.vercel.app%2F&external-id=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fwith-supabase&demo-image=https%3A%2F%2Fdemo-nextjs-with-supabase.vercel.app%2Fopengraph-image.png)
+# AI API (Claude via OpenRouter)
+ANTHROPIC_BASE_URL=your_openrouter_base_url
+ANTHROPIC_API_KEY=your_openrouter_api_key
 
-The above will also clone the Starter kit to your GitHub, you can clone that locally and develop locally.
+# ZPay Payment
+ZPAY_PID=your_zpay_pid
+ZPAY_PKEY=your_zpay_pkey
 
-If you wish to just develop locally and not deploy to Vercel, [follow the steps below](#clone-and-run-locally).
+# Site Configuration
+NEXT_PUBLIC_SITE_URL=http://localhost:3000
+\`\`\`
 
-## Clone and run locally
+## 快速开始
 
-1. You'll first need a Supabase project which can be made [via the Supabase dashboard](https://database.new)
+### 1. 安装依赖
 
-2. Create a Next.js app using the Supabase Starter template npx command
+\`\`\`bash
+pnpm install
+\`\`\`
 
-   ```bash
-   npx create-next-app --example with-supabase with-supabase-app
-   ```
+### 2. 配置环境变量
 
-   ```bash
-   yarn create next-app --example with-supabase with-supabase-app
-   ```
+创建 `.env.local` 文件并填写所有必需的环境变量。
 
-   ```bash
-   pnpm create next-app --example with-supabase with-supabase-app
-   ```
+### 3. 推送数据库 Schema
 
-3. Use `cd` to change into the app's directory
+\`\`\`bash
+pnpm db:push
+\`\`\`
 
-   ```bash
-   cd with-supabase-app
-   ```
+这将自动在 Supabase 数据库中创建所需的表结构。
 
-4. Rename `.env.example` to `.env.local` and update the following:
+### 4. 启动开发服务器
 
-  ```env
-  NEXT_PUBLIC_SUPABASE_URL=[INSERT SUPABASE PROJECT URL]
-  NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=[INSERT SUPABASE PROJECT API PUBLISHABLE OR ANON KEY]
-  ```
-  > [!NOTE]
-  > This example uses `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`, which refers to Supabase's new **publishable** key format.
-  > Both legacy **anon** keys and new **publishable** keys can be used with this variable name during the transition period. Supabase's dashboard may show `NEXT_PUBLIC_SUPABASE_ANON_KEY`; its value can be used in this example.
-  > See the [full announcement](https://github.com/orgs/supabase/discussions/29260) for more information.
+\`\`\`bash
+pnpm dev
+\`\`\`
 
-  Both `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` can be found in [your Supabase project's API settings](https://supabase.com/dashboard/project/_?showConnect=true)
+访问 [http://localhost:3000](http://localhost:3000) 查看应用。
 
-5. You can now run the Next.js local development server:
+## 数据库脚本
 
-   ```bash
-   npm run dev
-   ```
+- `pnpm db:generate` - 生成数据库迁移文件
+- `pnpm db:push` - 推送 schema 到数据库（推荐用于开发）
+- `pnpm db:studio` - 启动 Drizzle Studio 可视化数据库管理
 
-   The starter kit should now be running on [localhost:3000](http://localhost:3000/).
+## 项目结构
 
-6. This template comes with the default shadcn/ui style initialized. If you instead want other ui.shadcn styles, delete `components.json` and [re-install shadcn/ui](https://ui.shadcn.com/docs/installation/next)
+\`\`\`
+├── app/
+│   ├── (dashboard)/          # 仪表盘页面（需要登录）
+│   │   ├── layout.tsx        # 仪表盘布局
+│   │   ├── projects/         # 项目管理
+│   │   │   ├── page.tsx      # 项目列表
+│   │   │   ├── new/          # 新建项目
+│   │   │   └── [id]/         # 项目详情
+│   │   └── my/               # 个人中心
+│   ├── api/                  # API 路由
+│   │   ├── ai/               # AI 相关 API
+│   │   ├── payment/          # 支付相关 API
+│   │   ├── projects/         # 项目相关 API
+│   │   └── user/             # 用户相关 API
+│   ├── auth/                 # 认证页面
+│   ├── pricing/              # 价格页面
+│   ├── page.tsx              # 落地页
+│   └── layout.tsx            # 根布局
+├── components/               # React 组件
+│   └── ui/                   # shadcn/ui 组件
+├── lib/
+│   ├── ai/                   # AI 服务封装
+│   ├── db/                   # 数据库配置和 schema
+│   ├── payment/              # 支付服务封装
+│   └── supabase/             # Supabase 客户端
+└── drizzle.config.ts         # Drizzle 配置
+\`\`\`
 
-> Check out [the docs for Local Development](https://supabase.com/docs/guides/getting-started/local-development) to also run Supabase locally.
+## 主要功能
 
-## Feedback and issues
+### 1. 用户认证
 
-Please file feedback and issues over on the [Supabase GitHub org](https://github.com/supabase/supabase/issues/new/choose).
+- 使用 Supabase Auth 进行用户注册、登录
+- 支持邮箱密码登录
+- 路由保护，未登录自动跳转
 
-## More Supabase examples
+### 2. 项目管理
 
-- [Next.js Subscription Payments Starter](https://github.com/vercel/nextjs-subscription-payments)
-- [Cookie-based Auth and the Next.js 13 App Router (free course)](https://youtube.com/playlist?list=PL5S4mPUpp4OtMhpnp93EFSo42iQ40XjbF)
-- [Supabase Auth and the Next.js App Router](https://github.com/supabase/supabase/tree/master/examples/auth/nextjs)
+- 查看所有项目
+- 创建新项目（3步骤流程）
+  - 步骤1：描述项目
+  - 步骤2：AI 生成问题，用户回答
+  - 步骤3：AI 生成完整文档
+- 查看项目详情
+- 下载文档（单个或批量 ZIP）
+
+### 3. 点数系统
+
+- 购买点数套餐（基础版/专业版）
+- 每创建一个项目消耗 1 个点数
+- 点数永久有效
+
+### 4. 支付集成
+
+- 集成 ZPay 支付
+- 支持支付宝和微信支付
+- 支付回调自动充值点数
+- 支付历史记录
+
+### 5. AI 文档生成
+
+- 基于 Claude 4 模型
+- 生成 5 种专业文档：
+  - 用户旅程地图
+  - 产品需求 PRD
+  - 前端设计文档
+  - 后端设计文档
+  - 数据库设计文档
+
+## 部署
+
+### Vercel 部署
+
+1. 推送代码到 GitHub
+2. 在 Vercel 中导入项目
+3. 配置环境变量
+4. 部署
+
+### 数据库准备
+
+确保在部署前运行 `pnpm db:push` 创建数据库表结构。
+
+## 开发说明
+
+### 添加新的 shadcn/ui 组件
+
+\`\`\`bash
+npx shadcn@latest add [component-name]
+\`\`\`
+
+### 修改数据库 Schema
+
+1. 编辑 `lib/db/schema.ts`
+2. 运行 `pnpm db:push` 推送更改
+
+### 调试数据库
+
+\`\`\`bash
+pnpm db:studio
+\`\`\`
+
+这将启动 Drizzle Studio，可视化查看和编辑数据库。
+
+## 注意事项
+
+1. **API 密钥安全**: 确保所有敏感信息都存储在环境变量中，不要提交到版本控制
+2. **支付回调**: 确保支付回调 URL 可以从外网访问（使用 ngrok 或部署后的域名）
+3. **AI 调用限制**: 注意 API 调用频率和成本
+4. **数据库连接**: 确保 DATABASE_URL 正确配置且数据库可访问
+
+## License
+
+MIT
+
+## 支持
+
+如有问题，请提交 Issue 或联系开发团队。
