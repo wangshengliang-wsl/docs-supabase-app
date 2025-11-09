@@ -31,18 +31,18 @@ DATABASE_URL=your_supabase_database_url
 
 # Supabase Auth
 NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=your_supabase_publishable_key
+
+# Site Configuration
+BASE_URL=your_base_url
+NEXT_PUBLIC_SITE_URL=your_site_url
 
 # AI API (Claude via OpenRouter)
-ANTHROPIC_BASE_URL=your_openrouter_base_url
-ANTHROPIC_API_KEY=your_openrouter_api_key
+OPENROUTER_API_KEY=your_openrouter_api_key
 
 # ZPay Payment
 ZPAY_PID=your_zpay_pid
 ZPAY_PKEY=your_zpay_pkey
-
-# Site Configuration
-NEXT_PUBLIC_SITE_URL=http://localhost:3000
 \`\`\`
 
 ## 快速开始

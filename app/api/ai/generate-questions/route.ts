@@ -26,7 +26,7 @@ export async function POST(request: NextRequest) {
     }
 
     // 检查是否配置了 API Key
-    const hasApiKey = process.env.ANTHROPIC_API_KEY && process.env.ANTHROPIC_API_KEY.length > 0;
+    const hasApiKey = process.env.OPENROUTER_API_KEY && process.env.OPENROUTER_API_KEY.length > 0;
     
     let questions;
     let isMock = false;
@@ -42,7 +42,7 @@ export async function POST(request: NextRequest) {
         isMock = true;
       }
     } else {
-      console.log('⚠️  未配置 ANTHROPIC_API_KEY，使用模拟数据');
+      console.log('⚠️  未配置 OPENROUTER_API_KEY，使用模拟数据');
       questions = await generateQuestionsMock(description);
       isMock = true;
     }

@@ -49,5 +49,5 @@ VibeGuide需要有一个落地页，顶部导航栏分别有首页、价格。
 2. 用户的支付使用zpay，参考 @docs/z-pay.md。支付成功后能够正确添加支付历史，并充值对应的项目点数
 3. 前端样式要求现代简约，，使用TailwindCSS + Shadcn/UI实现
 4. AI能力使用 `anthropic/claude-sonnet-4` 的模型，用openai的sdk调用，调用参考 @docs/ai.md
-5. 环境变量.env文件中包括：DATABASE_URL、NEXT_PUBLIC_SUPABASE_URL、NEXT_PUBLIC_SUPABASE_ANON_KEY、ANTHROPIC_BASE_URL、
-ANTHROPIC_API_KEY、ZPAY_PID、ZPAY_PKEY、NEXT_PUBLIC_SITE_URL
+5. 环境变量.env文件中包括：DATABASE_URL、NEXT_PUBLIC_SUPABASE_URL、NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY、BASE_URL、
+OPENROUTER_API_KEY、ZPAY_PID、ZPAY_PKEY、NEXT_PUBLIC_SITE_URL

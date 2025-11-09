@@ -1,9 +1,9 @@
 import OpenAI from 'openai';
 
-// 初始化 OpenAI 客户端（用于调用 Claude API）
+// 初始化 OpenAI 客户端（用于调用 Claude API via OpenRouter）
 const openai = new OpenAI({
-  baseURL: process.env.ANTHROPIC_BASE_URL,
-  apiKey: process.env.ANTHROPIC_API_KEY,
+  baseURL: 'https://openrouter.ai/api/v1',
+  apiKey: process.env.OPENROUTER_API_KEY,
   defaultHeaders: {
     "HTTP-Referer": process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
     "X-Title": "VibeGuide",
