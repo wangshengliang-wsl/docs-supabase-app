@@ -22,8 +22,8 @@ export default async function ProjectsPage() {
     .orderBy(desc(projects.createdAt));
 
   return (
-    <div className="max-w-6xl mx-auto">
-      <div className="flex items-center justify-between mb-8">
+    <div className="w-full">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
         <div>
           <h1 className="text-3xl font-bold">我的项目</h1>
           <p className="text-muted-foreground mt-2">
@@ -31,7 +31,7 @@ export default async function ProjectsPage() {
           </p>
         </div>
         <Link href="/projects/new">
-          <Button size="lg">
+          <Button size="lg" className="glow-hover">
             <PlusCircleIcon className="mr-2 h-5 w-5" />
             新建项目
           </Button>
@@ -39,28 +39,22 @@ export default async function ProjectsPage() {
       </div>
 
       {userProjects.length === 0 ? (
-        <Card className="p-12">
+        <Card className="p-12 hover-lift">
           <div className="text-center space-y-4">
             <FileTextIcon className="h-16 w-16 mx-auto text-muted-foreground" />
             <h3 className="text-xl font-semibold">还没有项目</h3>
             <p className="text-muted-foreground">
               创建你的第一个项目，开始使用 AI 生成开发文档
             </p>
-            <Link href="/projects/new">
-              <Button size="lg">
-                <PlusCircleIcon className="mr-2 h-5 w-5" />
-                新建项目
-              </Button>
-            </Link>
           </div>
         </Card>
       ) : (
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-6">
           {userProjects.map((project) => (
             <Link key={project.id} href={`/projects/${project.id}`}>
-              <Card className="h-full hover:border-primary transition-colors cursor-pointer">
+              <Card className="h-full hover-lift hover:border-primary transition-all cursor-pointer group">
                 <CardHeader>
-                  <CardTitle className="line-clamp-2">{project.name}</CardTitle>
+                  <CardTitle className="line-clamp-2 group-hover:text-gradient transition-all">{project.name}</CardTitle>
                   <CardDescription>
                     创建于 {new Date(project.createdAt).toLocaleDateString('zh-CN', {
                       year: 'numeric',

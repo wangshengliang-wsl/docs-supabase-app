@@ -57,7 +57,7 @@ export default async function MyPage({
   const paymentStatus = params.payment;
 
   return (
-    <div className="max-w-4xl mx-auto space-y-8">
+    <div className="w-full space-y-8">
       <div>
         <h1 className="text-3xl font-bold">我的</h1>
         <p className="text-muted-foreground mt-2">
@@ -85,9 +85,9 @@ export default async function MyPage({
         </Card>
       )}
 
-      <div className="grid md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* 用户信息 */}
-        <Card>
+        <Card className="hover-lift">
           <CardHeader>
             <CardTitle>账户信息</CardTitle>
           </CardHeader>
@@ -114,7 +114,7 @@ export default async function MyPage({
         </Card>
 
         {/* 点数信息 */}
-        <Card>
+        <Card className="hover-lift border-primary/30">
           <CardHeader>
             <CardTitle>项目点数</CardTitle>
             <CardDescription>
@@ -123,24 +123,24 @@ export default async function MyPage({
           </CardHeader>
           <CardContent>
             <div className="flex items-center gap-4 mb-6">
-              <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center">
+              <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
                 <CoinsIcon className="h-8 w-8 text-primary" />
               </div>
               <div>
-                <div className="text-4xl font-bold">{dbUser.credits}</div>
+                <div className="text-4xl font-bold text-gradient">{dbUser.credits}</div>
                 <div className="text-sm text-muted-foreground">剩余点数</div>
               </div>
             </div>
             {dbUser.credits === 0 ? (
               <Link href="/pricing">
-                <Button className="w-full" size="lg">
+                <Button className="w-full glow-hover" size="lg">
                   <CreditCardIcon className="mr-2 h-5 w-5" />
                   获取点数
                 </Button>
               </Link>
             ) : (
               <Link href="/projects/new">
-                <Button className="w-full" size="lg">
+                <Button className="w-full glow-hover" size="lg">
                   创建新项目
                 </Button>
               </Link>
@@ -150,7 +150,7 @@ export default async function MyPage({
       </div>
 
       {/* 支付历史 */}
-      <Card>
+      <Card className="hover-lift">
         <CardHeader>
           <CardTitle>支付历史</CardTitle>
           <CardDescription>
@@ -221,7 +221,7 @@ export default async function MyPage({
       </Card>
 
       {/* 使用提示 */}
-      <Card>
+      <Card className="hover-lift">
         <CardHeader>
           <CardTitle>使用说明</CardTitle>
         </CardHeader>

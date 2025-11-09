@@ -2,9 +2,6 @@ import { drizzle } from 'drizzle-orm/neon-serverless';
 import { neonConfig, Pool } from '@neondatabase/serverless';
 import * as schema from './schema';
 
-// 配置 Neon
-neonConfig.fetchConnectionCache = true;
-
 // 创建连接池
 const pool = new Pool({ connectionString: process.env.DATABASE_URL });
 
