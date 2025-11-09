@@ -25,33 +25,35 @@ export default async function PricingPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
       {/* 导航栏 */}
-      <nav className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50">
+      <nav className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50 shadow-sm">
         <div className="container mx-auto px-4 h-16 flex items-center justify-between">
           <div className="flex items-center gap-6">
-            <Link href="/" className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-violet-600 bg-clip-text text-transparent">
+            <Link href="/" className="text-2xl font-bold text-gradient hover:scale-105 transition-transform">
               VibeGuide
             </Link>
             <div className="hidden md:flex items-center gap-6">
-              <Link href="/" className="text-sm font-medium hover:text-primary transition-colors">
+              <Link href="/" className="text-sm font-medium hover:text-primary transition-colors relative group">
                 首页
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-violet-600 group-hover:w-full transition-all duration-300" />
               </Link>
-              <Link href="/pricing" className="text-sm font-medium hover:text-primary transition-colors">
+              <Link href="/pricing" className="text-sm font-medium hover:text-primary transition-colors relative group">
                 价格
+                <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-blue-600 to-violet-600" />
               </Link>
             </div>
           </div>
           <div className="flex items-center gap-4">
             {user ? (
               <Link href="/projects">
-                <Button>进入控制台</Button>
+                <Button className="glow-hover">进入控制台</Button>
               </Link>
             ) : (
               <>
                 <Link href="/auth/login">
-                  <Button variant="ghost">登录</Button>
+                  <Button variant="ghost" className="hover-lift">登录</Button>
                 </Link>
                 <Link href="/auth/sign-up">
-                  <Button>注册</Button>
+                  <Button className="glow-hover">注册</Button>
                 </Link>
               </>
             )}
@@ -62,10 +64,10 @@ export default async function PricingPage() {
       {/* 价格内容 */}
       <section className="container mx-auto px-4 py-20">
         <div className="max-w-5xl mx-auto">
-          <div className="text-center space-y-4 mb-16">
+          <div className="text-center space-y-4 mb-16 animate-fade-in-up">
             <h1 className="text-4xl md:text-5xl font-bold">
               选择适合你的
-              <span className="bg-gradient-to-r from-blue-600 to-violet-600 bg-clip-text text-transparent">
+              <span className="text-gradient">
                 {" "}价格方案
               </span>
             </h1>
@@ -76,7 +78,7 @@ export default async function PricingPage() {
 
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {/* 基础版 */}
-            <Card className="relative">
+            <Card className="relative hover-lift">
               <CardHeader>
                 <CardTitle className="text-2xl">基础版</CardTitle>
                 <div className="mt-4">
@@ -127,7 +129,7 @@ export default async function PricingPage() {
               </CardContent>
               <CardFooter>
                 <form action={handlePurchase.bind(null, "basic")} className="w-full">
-                  <Button size="lg" variant="outline" className="w-full">
+                  <Button size="lg" variant="outline" className="w-full hover:scale-105 transition-transform">
                     购买基础版
                   </Button>
                 </form>
@@ -135,16 +137,16 @@ export default async function PricingPage() {
             </Card>
 
             {/* 专业版 */}
-            <Card className="relative border-primary shadow-lg">
+            <Card className="relative border-primary shadow-lg hover-lift glow">
               <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-                <span className="bg-gradient-to-r from-blue-600 to-violet-600 text-white px-4 py-1 rounded-full text-sm font-medium">
+                <span className="bg-gradient-to-r from-blue-600 to-violet-600 text-white px-4 py-1 rounded-full text-sm font-medium shadow-lg">
                   推荐
                 </span>
               </div>
               <CardHeader>
                 <CardTitle className="text-2xl">专业版</CardTitle>
                 <div className="mt-4">
-                  <span className="text-5xl font-bold">¥40</span>
+                  <span className="text-5xl font-bold text-gradient">¥40</span>
                 </div>
                 <CardDescription className="text-base mt-2">
                   30 个项目点数
@@ -198,7 +200,7 @@ export default async function PricingPage() {
               </CardContent>
               <CardFooter>
                 <form action={handlePurchase.bind(null, "pro")} className="w-full">
-                  <Button size="lg" className="w-full">
+                  <Button size="lg" className="w-full glow-hover group">
                     购买专业版
                   </Button>
                 </form>
@@ -263,36 +265,48 @@ export default async function PricingPage() {
           <div className="mt-20">
             <h2 className="text-2xl font-bold text-center mb-8">常见问题</h2>
             <div className="max-w-3xl mx-auto space-y-4">
-              <Card>
+              <Card className="hover-lift cursor-pointer">
                 <CardHeader>
-                  <CardTitle className="text-lg">如何支付？</CardTitle>
+                  <CardTitle className="text-lg flex items-center gap-2">
+                    <span className="text-2xl">💳</span>
+                    <span>如何支付？</span>
+                  </CardTitle>
                   <CardDescription>
                     我们支持支付宝和微信支付。点击购买按钮后，系统会跳转到支付页面，选择你喜欢的支付方式即可。
                   </CardDescription>
                 </CardHeader>
               </Card>
 
-              <Card>
+              <Card className="hover-lift cursor-pointer">
                 <CardHeader>
-                  <CardTitle className="text-lg">点数会过期吗？</CardTitle>
+                  <CardTitle className="text-lg flex items-center gap-2">
+                    <span className="text-2xl">⏰</span>
+                    <span>点数会过期吗？</span>
+                  </CardTitle>
                   <CardDescription>
                     不会！购买的点数永久有效，没有任何时间限制。你可以随时使用。
                   </CardDescription>
                 </CardHeader>
               </Card>
 
-              <Card>
+              <Card className="hover-lift cursor-pointer">
                 <CardHeader>
-                  <CardTitle className="text-lg">可以退款吗？</CardTitle>
+                  <CardTitle className="text-lg flex items-center gap-2">
+                    <span className="text-2xl">💰</span>
+                    <span>可以退款吗？</span>
+                  </CardTitle>
                   <CardDescription>
                     如果你购买后未使用任何点数，可以在 7 天内申请全额退款。使用过点数后不支持退款。
                   </CardDescription>
                 </CardHeader>
               </Card>
 
-              <Card>
+              <Card className="hover-lift cursor-pointer">
                 <CardHeader>
-                  <CardTitle className="text-lg">可以升级套餐吗？</CardTitle>
+                  <CardTitle className="text-lg flex items-center gap-2">
+                    <span className="text-2xl">📈</span>
+                    <span>可以升级套餐吗？</span>
+                  </CardTitle>
                   <CardDescription>
                     当然可以！你可以随时购买更多点数。不同套餐的点数会累加到你的账户中。
                   </CardDescription>

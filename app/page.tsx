@@ -24,33 +24,35 @@ export default async function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
       {/* 导航栏 */}
-      <nav className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50">
+      <nav className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50 shadow-sm">
         <div className="container mx-auto px-4 h-16 flex items-center justify-between">
           <div className="flex items-center gap-6">
-            <Link href="/" className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-violet-600 bg-clip-text text-transparent">
+            <Link href="/" className="text-2xl font-bold text-gradient hover:scale-105 transition-transform">
               VibeGuide
             </Link>
             <div className="hidden md:flex items-center gap-6">
-              <Link href="/" className="text-sm font-medium hover:text-primary transition-colors">
+              <Link href="/" className="text-sm font-medium hover:text-primary transition-colors relative group">
                 首页
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-violet-600 group-hover:w-full transition-all duration-300" />
               </Link>
-              <Link href="/pricing" className="text-sm font-medium hover:text-primary transition-colors">
+              <Link href="/pricing" className="text-sm font-medium hover:text-primary transition-colors relative group">
                 价格
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-violet-600 group-hover:w-full transition-all duration-300" />
               </Link>
             </div>
           </div>
           <div className="flex items-center gap-4">
             {user ? (
               <Link href="/projects">
-                <Button>进入控制台</Button>
+                <Button className="glow-hover">进入控制台</Button>
               </Link>
             ) : (
               <>
                 <Link href="/auth/login">
-                  <Button variant="ghost">登录</Button>
+                  <Button variant="ghost" className="hover-lift">登录</Button>
                 </Link>
                 <Link href="/auth/sign-up">
-                  <Button>注册</Button>
+                  <Button className="glow-hover">注册</Button>
                 </Link>
               </>
             )}
@@ -59,27 +61,33 @@ export default async function Home() {
       </nav>
 
       {/* Hero 区域 */}
-      <section className="container mx-auto px-4 py-20 md:py-32">
+      <section className="container mx-auto px-4 py-20 md:py-32 relative overflow-hidden">
+        {/* 背景装饰 */}
+        <div className="absolute inset-0 -z-10">
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse" />
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-violet-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+        </div>
+        
         <div className="max-w-4xl mx-auto text-center space-y-8">
           <div className="space-y-4">
-            <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
+            <h1 className="text-4xl md:text-6xl font-bold tracking-tight animate-fade-in-up">
               AI 驱动的智能
-              <span className="bg-gradient-to-r from-blue-600 to-violet-600 bg-clip-text text-transparent">
+              <span className="text-gradient float-animation inline-block">
                 {" "}开发文档平台
               </span>
             </h1>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto fade-in-delay-1">
               VibeGuide 帮助编程新手和团队快速生成专业的项目开发文档，包括用户旅程地图、PRD、技术设计文档等，让项目规划更简单高效。
             </p>
           </div>
-          <div className="flex items-center justify-center gap-4">
+          <div className="flex items-center justify-center gap-4 fade-in-delay-2">
             <form action={handleGetStarted}>
-              <Button size="lg" className="text-lg px-8">
-                立即开始 <SparklesIcon className="ml-2 h-5 w-5" />
+              <Button size="lg" className="text-lg px-8 glow-hover group">
+                立即开始 <SparklesIcon className="ml-2 h-5 w-5 group-hover:rotate-12 transition-transform" />
               </Button>
             </form>
             <Link href="/pricing">
-              <Button size="lg" variant="outline" className="text-lg px-8">
+              <Button size="lg" variant="outline" className="text-lg px-8 hover-lift">
                 查看价格
               </Button>
             </Link>
@@ -97,10 +105,10 @@ export default async function Home() {
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <Card>
+            <Card className="hover-lift border-blue-500/20 hover:border-blue-500/40 transition-all group">
               <CardHeader>
-                <div className="w-12 h-12 rounded-lg bg-blue-500/10 flex items-center justify-center mb-2">
-                  <SparklesIcon className="h-6 w-6 text-blue-500" />
+                <div className="w-12 h-12 rounded-lg bg-blue-500/10 flex items-center justify-center mb-2 group-hover:bg-blue-500/20 transition-colors">
+                  <SparklesIcon className="h-6 w-6 text-blue-500 group-hover:scale-110 transition-transform" />
                 </div>
                 <CardTitle>AI 智能生成</CardTitle>
                 <CardDescription>
@@ -109,10 +117,10 @@ export default async function Home() {
               </CardHeader>
             </Card>
 
-            <Card>
+            <Card className="hover-lift border-violet-500/20 hover:border-violet-500/40 transition-all group">
               <CardHeader>
-                <div className="w-12 h-12 rounded-lg bg-violet-500/10 flex items-center justify-center mb-2">
-                  <FileTextIcon className="h-6 w-6 text-violet-500" />
+                <div className="w-12 h-12 rounded-lg bg-violet-500/10 flex items-center justify-center mb-2 group-hover:bg-violet-500/20 transition-colors">
+                  <FileTextIcon className="h-6 w-6 text-violet-500 group-hover:scale-110 transition-transform" />
                 </div>
                 <CardTitle>全面的文档类型</CardTitle>
                 <CardDescription>
@@ -121,10 +129,10 @@ export default async function Home() {
               </CardHeader>
             </Card>
 
-            <Card>
+            <Card className="hover-lift border-green-500/20 hover:border-green-500/40 transition-all group">
               <CardHeader>
-                <div className="w-12 h-12 rounded-lg bg-green-500/10 flex items-center justify-center mb-2">
-                  <ZapIcon className="h-6 w-6 text-green-500" />
+                <div className="w-12 h-12 rounded-lg bg-green-500/10 flex items-center justify-center mb-2 group-hover:bg-green-500/20 transition-colors">
+                  <ZapIcon className="h-6 w-6 text-green-500 group-hover:scale-110 transition-transform" />
                 </div>
                 <CardTitle>快速高效</CardTitle>
                 <CardDescription>
@@ -133,10 +141,10 @@ export default async function Home() {
               </CardHeader>
             </Card>
 
-            <Card>
+            <Card className="hover-lift border-orange-500/20 hover:border-orange-500/40 transition-all group">
               <CardHeader>
-                <div className="w-12 h-12 rounded-lg bg-orange-500/10 flex items-center justify-center mb-2">
-                  <ClockIcon className="h-6 w-6 text-orange-500" />
+                <div className="w-12 h-12 rounded-lg bg-orange-500/10 flex items-center justify-center mb-2 group-hover:bg-orange-500/20 transition-colors">
+                  <ClockIcon className="h-6 w-6 text-orange-500 group-hover:scale-110 transition-transform" />
                 </div>
                 <CardTitle>随时访问</CardTitle>
                 <CardDescription>
@@ -145,10 +153,10 @@ export default async function Home() {
               </CardHeader>
             </Card>
 
-            <Card>
+            <Card className="hover-lift border-pink-500/20 hover:border-pink-500/40 transition-all group">
               <CardHeader>
-                <div className="w-12 h-12 rounded-lg bg-pink-500/10 flex items-center justify-center mb-2">
-                  <ShieldIcon className="h-6 w-6 text-pink-500" />
+                <div className="w-12 h-12 rounded-lg bg-pink-500/10 flex items-center justify-center mb-2 group-hover:bg-pink-500/20 transition-colors">
+                  <ShieldIcon className="h-6 w-6 text-pink-500 group-hover:scale-110 transition-transform" />
                 </div>
                 <CardTitle>安全可靠</CardTitle>
                 <CardDescription>
@@ -157,10 +165,10 @@ export default async function Home() {
               </CardHeader>
             </Card>
 
-            <Card>
+            <Card className="hover-lift border-cyan-500/20 hover:border-cyan-500/40 transition-all group">
               <CardHeader>
-                <div className="w-12 h-12 rounded-lg bg-cyan-500/10 flex items-center justify-center mb-2">
-                  <CheckIcon className="h-6 w-6 text-cyan-500" />
+                <div className="w-12 h-12 rounded-lg bg-cyan-500/10 flex items-center justify-center mb-2 group-hover:bg-cyan-500/20 transition-colors">
+                  <CheckIcon className="h-6 w-6 text-cyan-500 group-hover:scale-110 transition-transform" />
                 </div>
                 <CardTitle>灵活导出</CardTitle>
                 <CardDescription>
@@ -176,17 +184,17 @@ export default async function Home() {
       <section className="container mx-auto px-4 py-20">
         <div className="max-w-4xl mx-auto">
           <div className="grid md:grid-cols-3 gap-8 text-center">
-            <div>
-              <div className="text-4xl font-bold text-primary mb-2">1000+</div>
-              <div className="text-muted-foreground">活跃用户</div>
+            <div className="group cursor-default">
+              <div className="text-4xl font-bold text-gradient mb-2 group-hover:scale-110 transition-transform">1000+</div>
+              <div className="text-muted-foreground group-hover:text-foreground transition-colors">活跃用户</div>
             </div>
-            <div>
-              <div className="text-4xl font-bold text-primary mb-2">5000+</div>
-              <div className="text-muted-foreground">生成文档</div>
+            <div className="group cursor-default">
+              <div className="text-4xl font-bold text-gradient mb-2 group-hover:scale-110 transition-transform">5000+</div>
+              <div className="text-muted-foreground group-hover:text-foreground transition-colors">生成文档</div>
             </div>
-            <div>
-              <div className="text-4xl font-bold text-primary mb-2">98%</div>
-              <div className="text-muted-foreground">用户满意度</div>
+            <div className="group cursor-default">
+              <div className="text-4xl font-bold text-gradient mb-2 group-hover:scale-110 transition-transform">98%</div>
+              <div className="text-muted-foreground group-hover:text-foreground transition-colors">用户满意度</div>
             </div>
           </div>
         </div>
@@ -202,7 +210,7 @@ export default async function Home() {
             </p>
           </div>
           <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
-            <Card>
+            <Card className="hover-lift">
               <CardHeader>
                 <CardTitle>基础版</CardTitle>
                 <div className="text-3xl font-bold mt-2">¥20</div>
@@ -210,45 +218,48 @@ export default async function Home() {
               </CardHeader>
               <CardContent>
                 <ul className="space-y-2">
-                  <li className="flex items-center gap-2">
-                    <CheckIcon className="h-4 w-4 text-green-500" />
+                  <li className="flex items-center gap-2 group">
+                    <CheckIcon className="h-4 w-4 text-green-500 group-hover:scale-125 transition-transform" />
                     <span>生成 10 个项目文档</span>
                   </li>
-                  <li className="flex items-center gap-2">
-                    <CheckIcon className="h-4 w-4 text-green-500" />
+                  <li className="flex items-center gap-2 group">
+                    <CheckIcon className="h-4 w-4 text-green-500 group-hover:scale-125 transition-transform" />
                     <span>所有文档类型</span>
                   </li>
-                  <li className="flex items-center gap-2">
-                    <CheckIcon className="h-4 w-4 text-green-500" />
+                  <li className="flex items-center gap-2 group">
+                    <CheckIcon className="h-4 w-4 text-green-500 group-hover:scale-125 transition-transform" />
                     <span>云端保存</span>
                   </li>
                 </ul>
               </CardContent>
             </Card>
 
-            <Card className="border-primary">
+            <Card className="border-primary hover-lift relative overflow-hidden group">
+              <div className="absolute top-0 right-0 bg-gradient-to-br from-blue-500 to-violet-500 text-white text-xs px-3 py-1 rounded-bl-lg font-semibold">
+                推荐
+              </div>
               <CardHeader>
                 <CardTitle>专业版</CardTitle>
-                <div className="text-3xl font-bold mt-2">¥40</div>
+                <div className="text-3xl font-bold mt-2 text-gradient">¥40</div>
                 <CardDescription>30 个项目点数</CardDescription>
               </CardHeader>
               <CardContent>
                 <ul className="space-y-2">
-                  <li className="flex items-center gap-2">
-                    <CheckIcon className="h-4 w-4 text-green-500" />
+                  <li className="flex items-center gap-2 group/item">
+                    <CheckIcon className="h-4 w-4 text-green-500 group-hover/item:scale-125 transition-transform" />
                     <span>生成 30 个项目文档</span>
                   </li>
-                  <li className="flex items-center gap-2">
-                    <CheckIcon className="h-4 w-4 text-green-500" />
+                  <li className="flex items-center gap-2 group/item">
+                    <CheckIcon className="h-4 w-4 text-green-500 group-hover/item:scale-125 transition-transform" />
                     <span>所有文档类型</span>
                   </li>
-                  <li className="flex items-center gap-2">
-                    <CheckIcon className="h-4 w-4 text-green-500" />
+                  <li className="flex items-center gap-2 group/item">
+                    <CheckIcon className="h-4 w-4 text-green-500 group-hover/item:scale-125 transition-transform" />
                     <span>云端保存</span>
                   </li>
-                  <li className="flex items-center gap-2">
-                    <CheckIcon className="h-4 w-4 text-green-500" />
-                    <span className="font-semibold">更高性价比</span>
+                  <li className="flex items-center gap-2 group/item">
+                    <CheckIcon className="h-4 w-4 text-green-500 group-hover/item:scale-125 transition-transform" />
+                    <span className="font-semibold text-gradient">更高性价比</span>
                   </li>
                 </ul>
               </CardContent>
@@ -256,7 +267,7 @@ export default async function Home() {
           </div>
           <div className="text-center mt-8">
             <Link href="/pricing">
-              <Button size="lg">查看详细价格</Button>
+              <Button size="lg" className="glow-hover">查看详细价格</Button>
             </Link>
           </div>
         </div>
@@ -269,36 +280,48 @@ export default async function Home() {
             <h2 className="text-3xl md:text-4xl font-bold">常见问题</h2>
           </div>
           <div className="space-y-6">
-            <Card>
+            <Card className="hover-lift cursor-pointer">
               <CardHeader>
-                <CardTitle>什么是项目点数？</CardTitle>
+                <CardTitle className="flex items-center gap-2">
+                  <span className="text-2xl">💡</span>
+                  <span>什么是项目点数？</span>
+                </CardTitle>
                 <CardDescription>
                   每创建并保存一个项目需要消耗 1 个点数。点数购买后永久有效，没有时间限制。
                 </CardDescription>
               </CardHeader>
             </Card>
 
-            <Card>
+            <Card className="hover-lift cursor-pointer">
               <CardHeader>
-                <CardTitle>生成的文档质量如何？</CardTitle>
+                <CardTitle className="flex items-center gap-2">
+                  <span className="text-2xl">✨</span>
+                  <span>生成的文档质量如何？</span>
+                </CardTitle>
                 <CardDescription>
                   我们使用最先进的 Claude 4 AI 模型，可以生成专业级的开发文档。文档内容详实，结构清晰，可直接用于项目开发。
                 </CardDescription>
               </CardHeader>
             </Card>
 
-            <Card>
+            <Card className="hover-lift cursor-pointer">
               <CardHeader>
-                <CardTitle>可以修改生成的文档吗？</CardTitle>
+                <CardTitle className="flex items-center gap-2">
+                  <span className="text-2xl">📝</span>
+                  <span>可以修改生成的文档吗？</span>
+                </CardTitle>
                 <CardDescription>
                   当然可以！生成的文档支持 Markdown 格式下载，你可以使用任何文本编辑器进行修改。
                 </CardDescription>
               </CardHeader>
             </Card>
 
-            <Card>
+            <Card className="hover-lift cursor-pointer">
               <CardHeader>
-                <CardTitle>数据安全吗？</CardTitle>
+                <CardTitle className="flex items-center gap-2">
+                  <span className="text-2xl">🔒</span>
+                  <span>数据安全吗？</span>
+                </CardTitle>
                 <CardDescription>
                   我们使用 Supabase 提供的企业级数据库服务，所有数据都经过加密存储。你的项目信息完全私密，只有你可以访问。
                 </CardDescription>
@@ -309,17 +332,18 @@ export default async function Home() {
       </section>
 
       {/* CTA */}
-      <section className="container mx-auto px-4 py-20 bg-gradient-to-r from-blue-600 to-violet-600">
-        <div className="max-w-4xl mx-auto text-center space-y-6 text-white">
-          <h2 className="text-3xl md:text-4xl font-bold">
+      <section className="container mx-auto px-4 py-20 bg-gradient-to-r from-blue-600 to-violet-600 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4xIj48cGF0aCBkPSJNMzYgMzRjMC0yLjIxLTEuNzktNC00LTRzLTQgMS43OS00IDQgMS43OSA0IDQgNCA0LTEuNzkgNC00em0wLTEwYzAtMi4yMS0xLjc5LTQtNC00cy00IDEuNzktNCA0IDEuNzkgNCA0IDQgNC0xLjc5IDQtNHptMC0xMGMwLTIuMjEtMS43OS00LTQtNHMtNCAxLjc5LTQgNHMxLjc5IDQgNCA0IDQtMS43OSA0LTR6Ii8+PC9nPjwvZz48L3N2Zz4=')] opacity-10" />
+        <div className="max-w-4xl mx-auto text-center space-y-6 text-white relative">
+          <h2 className="text-3xl md:text-4xl font-bold animate-fade-in-up">
             准备好开始你的项目了吗？
           </h2>
-          <p className="text-xl opacity-90">
+          <p className="text-xl opacity-90 fade-in-delay-1">
             立即注册，体验 AI 驱动的智能文档生成
           </p>
-          <form action={handleGetStarted}>
-            <Button size="lg" variant="secondary" className="text-lg px-8">
-              免费开始 <SparklesIcon className="ml-2 h-5 w-5" />
+          <form action={handleGetStarted} className="fade-in-delay-2">
+            <Button size="lg" variant="secondary" className="text-lg px-8 hover:scale-105 transition-transform group">
+              免费开始 <SparklesIcon className="ml-2 h-5 w-5 group-hover:rotate-12 transition-transform" />
             </Button>
           </form>
         </div>
