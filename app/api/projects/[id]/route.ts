@@ -5,9 +5,12 @@ import { eq, and } from 'drizzle-orm';
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    // 等待 params (Next.js 16 要求)
+    const { id } = await params;
+
     // 验证用户登录
     const supabase = await createClient();
     const { data: { user }, error: authError } = await supabase.auth.getUser();
@@ -24,7 +27,7 @@ export async function GET(
       .select()
       .from(projects)
       .where(and(
-        eq(projects.id, params.id),
+        eq(projects.id, id),
         eq(projects.userId, user.id)
       ))
       .limit(1);
